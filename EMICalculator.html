@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        EMI Calculator
+    </title>
+    <style>
+        * {
+            margin-left: 20px;
+            margin-top: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        table {
+            width: 500px;
+            border: 2px solid black;
+        }
+        
+        input {
+            text-align: right;
+            width: 200px;
+        }
+        
+        .cen {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h4>
+            EMI Calculator</h4>
+
+        <table>
+
+            <form>
+
+                <tr>
+                    <td colspan="3">Loan Amount</span>
+                    </td>
+                    <td colspan="3"><input type="text" id="Amount" placeholder="E.g.:20000"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Repayment in months</td>
+                    <td colspan="3">
+                        <input type="number" id="nmonths" placeholder="E.g.:12"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Interest Rate</td>
+                    <td colspan="3"><input type="number" id="rate" placeholder="E.g.:13"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><input type="button" class="cen" id="Reset" value="Reset" onclick="reset()"></td>
+                    <td colspan="3"><input type="button" class="cen" id="Submit" value="Submit" onclick="Emicalc()"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"> EMI</td>
+                    <td colspan="3"><input type="text" id="emi" placeholder="E.g.:1786.35"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"> Interest payable</td>
+                    <td colspan="3"> <input type="text" id="intpay" placeholder="E.g.:1436.2"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total payable</td>
+                    <td colspan="3"> <input type="number" id="totpay" placeholder="E.g.:21436.2"></td>
+                </tr>
+                </tr>
+
+                <script>
+                    var p, r, t, inter, tpay, emi;
+                    p = document.querySelector("#Amount").value;
+                    r = document.querySelector("#rate").value;
+                    t = document.querySelector("#nmonths").value;
+                    emi = document.querySelector("#emi").value;
+                    inter = document.querySelector("#intpay").value;
+                    tpay = document.querySelector("#totpay").value;
+
+                    function onreset() {
+                        p.value = "";
+                        r.value = "";
+                        t.value = "";
+                        emi.value = "";
+                        inter.value = "";
+                        tpay.value = "";
+
+                    }
+
+                    function Emicalc() {
+                        p = document.querySelector("#Amount").value;
+                        r = document.querySelector("#rate").value;
+                        t = document.querySelector("#nmonths").value;
+                        var ip = (p * (r * 0.01) / t);
+
+                        var v = ((p / t) + ip);
+                        var tot = Number(p) + Number(ip);
+                        document.querySelector("#intpay").value = ip;
+                        document.querySelector("#emi").value = v;
+                        document.querySelector("#totpay").value = tot;
+
+
+                    }
+                </script>
+
+            </form>
+
+        </table>
+    </center>
+</body>
+
+</html>
